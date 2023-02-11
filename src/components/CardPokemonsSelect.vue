@@ -1,5 +1,5 @@
 <script setup>
-const pokemon = defineProps(["name", "xp", "height", "img", "loading"])
+const pokemon = defineProps(["name", "xp", "height", "img", 'abilities',"loading"])
 
 </script>
 
@@ -11,13 +11,15 @@ const pokemon = defineProps(["name", "xp", "height", "img", "loading"])
         <img 
         v-if="pokemon.name"
         :src="pokemon.img" 
-        class="card-img-top pt-2"
+        class="card-img-top pt-2 mx-auto d-block"
         :alt="pokemon.name"
+        style="margin-top: 30px; margin-bottom: 30px;"
         >
         <img 
         v-else
-        src="../assets/egg_pokemon.svg"
-        class="card-img-top pt-2"
+        src="../assets/pokeball.png"
+        class="card-img-top pt-2 mx-auto d-block"
+        style="margin-top: 30px; margin-bottom: 30px;"
         alt="???"
         >
 
@@ -35,18 +37,7 @@ const pokemon = defineProps(["name", "xp", "height", "img", "loading"])
                 </section>
             </div>
 
-            <div class="d-none d-md-block">
-                <div class="row text-center mt-3">
-                    <section class="col">
-                        <strong>XP:</strong>
-                        <span>{{ pokemon.xp }}</span>
-                    </section>
-                    <section class="col">
-                        <strong>Altura:</strong>
-                        <span>{{ pokemon.height }}</span>
-                    </section>
-                </div>
-            </div>
+            
         </div>
     </div>
 </template>
@@ -60,6 +51,7 @@ const pokemon = defineProps(["name", "xp", "height", "img", "loading"])
 }
 .CardPokemonSelected img{
     height: 250px;
+    width: 250px;
 }
 
 @media (max-width: 768px) {
