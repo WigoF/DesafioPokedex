@@ -1,15 +1,27 @@
 <script setup>
-import{onMounted, reactive, ref} from 'vue'
+import{onMounted, reactive, ref, computed} from 'vue'
 import ListPokemons from '../components/ListPokemons.vue';
 
 
 let baseUrlSvg = ref('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/');
 let allPokemons = reactive(ref());
+let searchPokemonField = ref('');
+
 
 onMounted(()=>{
   fetch('https://pokeapi.co/api/v2/pokemon?limit=151&offset=0')
   .then(res => res.json())
   .then(res => allPokemons.value = res.results)
+})
+
+const pokemonFilter = computed(()=>{
+  if(allPokemons.value && searchPokemonField.value){
+    return allPokemons.value.filter(pokemon=>
+      pokemon.name.toLowerCase().includes(searchPokemonField.value.toLowerCase())
+    )
+  }
+
+  return allPokemons.value
 })
 
 </script>
@@ -49,7 +61,7 @@ onMounted(()=>{
                         
               
                 <ListPokemons
-                v-for="pokemon in allPokemons" 
+                v-for="pokemon in pokemonFilter" 
                 :key='pokemon.name'
                 :name='pokemon.name'
                 :baseUrlSvg="baseUrlSvg + pokemon.url.split('/')[6] +'.svg'"/>              
