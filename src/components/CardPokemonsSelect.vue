@@ -37,6 +37,17 @@ const pokemon = defineProps(["name", "xp", "height", "img", 'abilities',"loading
                 </section>
             </div>
 
+            <div class="row text-center">
+                <section class="col">
+                    <strong>Habilidade:</strong>
+                    <span>{{ pokemon.abilities}}</span>
+                </section>
+                <section class="col">
+                    <strong>Altura:</strong>
+                    <span>{{ pokemon.height }}</span>
+                </section>
+            </div>
+
             
         </div>
     </div>

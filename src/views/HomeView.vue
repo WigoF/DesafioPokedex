@@ -51,6 +51,7 @@ const selectPokemon = async (pokemon) => {
           :height="pokemonSelected?.height"
           :img="pokemonSelected?.sprites.other.dream_world.front_default"
           :loading="loading"
+          :abilities="pokemonSelected?.abilities.ability.name"
           />
 
         </div>
